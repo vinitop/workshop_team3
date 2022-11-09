@@ -154,15 +154,28 @@ body {
   transform: translateY(0) scale(2);
 }
 
-.choose .button button:last-child {
+.choose .button button:nth-child(2) {
   color: rgb(138, 225, 252);
   transition: 0.5s;
   transition-delay: calc((var(--n) - 1) * 0.1s);
   z-index: -1;
 }
 
-.choose .button button:last-child:hover {
+.choose .button button:nth-child(2):hover {
   background-color: rgb(138, 225, 252);
+  transform: translateY(0) scale(2);
+  color: white;
+}
+
+.choose .button button:nth-child(3) {
+  color: rgb(155, 252, 138);
+  transition: 0.5s;
+  transition-delay: calc((var(--n) - 1) * 0.1s);
+  z-index: -1;
+}
+
+.choose .button button:nth-child(3):hover {
+  background-color: rgb(155, 252, 138);
   transform: translateY(0) scale(2);
   color: white;
 }

@@ -205,13 +205,15 @@ export default class Board extends Component {
         <div className="choose">
           <h1>Checkers Board Game</h1>
           <div className="button">
-            <button onClick={() => this.changeNumberOfPlayer(1)}>
+            <button className="onep" onClick={() => this.changeNumberOfPlayer(1)}>
               1 Player
             </button>
-            <button onClick={() => this.changeNumberOfPlayer(2)}>
+            <button className="twop" onClick={() => this.changeNumberOfPlayer(2)}>
               2 Player
             </button>
-            <button onClick={() => this.boardLoad()}>Load Game</button>
+            <button className="lg" onClick={() => this.boardLoad()}>
+              Load Game
+            </button>
           </div>
         </div>
       );
@@ -247,14 +249,6 @@ export default class Board extends Component {
             {this.state.winner
               ? `${this.state.winner} Win`
               : `Player ${this.state.turn} Turn`}
-          </h1>
-          <h1
-            onClick={() => {
-              window.location.reload();
-            }}
-            className="new-game"
-          >
-            New Game
           </h1>
           <h1
             onClick={() => {
