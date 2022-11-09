@@ -15,7 +15,7 @@ export function getNextStateBoard(oldState) {
     clickedBefore,
     possibleMove,
     possibleJumpMove
-  } = state;
+   } = state;
   const [row, column] = clickedNow;
   const piece = board[row][column].color;
   const isKing = board[row][column].isKing;
@@ -35,16 +35,16 @@ export function getNextStateBoard(oldState) {
 
     // check if piece clicked is possible to move or not
     if (possibleClick.find(el => el[0] === row && el[1] === column)) {
-      state.clickedBefore = [row, column];
-      state.clickedNow = [];
-      state.possibleMove = checkPossibleMove(row, column, piece, isKing, board);
-      state.possibleJumpMove = checkPossibleJumpMove(
-        row,
-        column,
-        piece,
-        isKing,
-        board
-      );
+       state.clickedBefore = [row, column];
+       state.clickedNow = [];
+       state.possibleMove = checkPossibleMove(row, column, piece, isKing, board);
+       state.possibleJumpMove = checkPossibleJumpMove(
+         row,
+         column,
+         piece,
+         isKing,
+         board
+       );
 
       return state;
     }
