@@ -15,7 +15,7 @@ export default class Board extends Component {
         new Piece("0"),
         new Piece("M"),
         new Piece("0"),
-        new Piece("M")
+        new Piece("M"),
       ],
       [
         new Piece("M"),
@@ -25,7 +25,7 @@ export default class Board extends Component {
         new Piece("M"),
         new Piece("0"),
         new Piece("M"),
-        new Piece("0")
+        new Piece("0"),
       ],
       [
         new Piece("0"),
@@ -35,7 +35,7 @@ export default class Board extends Component {
         new Piece("0"),
         new Piece("M"),
         new Piece("0"),
-        new Piece("M")
+        new Piece("M"),
       ],
       [
         new Piece("0"),
@@ -45,7 +45,7 @@ export default class Board extends Component {
         new Piece("0"),
         new Piece("0"),
         new Piece("0"),
-        new Piece("0")
+        new Piece("0"),
       ],
       [
         new Piece("0"),
@@ -55,7 +55,7 @@ export default class Board extends Component {
         new Piece("0"),
         new Piece("0"),
         new Piece("0"),
-        new Piece("0")
+        new Piece("0"),
       ],
       [
         new Piece("B"),
@@ -65,7 +65,7 @@ export default class Board extends Component {
         new Piece("B"),
         new Piece("0"),
         new Piece("B"),
-        new Piece("0")
+        new Piece("0"),
       ],
       [
         new Piece("0"),
@@ -75,7 +75,7 @@ export default class Board extends Component {
         new Piece("0"),
         new Piece("B"),
         new Piece("0"),
-        new Piece("B")
+        new Piece("B"),
       ],
       [
         new Piece("B"),
@@ -85,8 +85,8 @@ export default class Board extends Component {
         new Piece("B"),
         new Piece("0"),
         new Piece("B"),
-        new Piece("0")
-      ]
+        new Piece("0"),
+      ],
     ],
     turn: 1,
     possibleMove: [],
@@ -97,12 +97,12 @@ export default class Board extends Component {
     piecePlayerRed: 12,
     winner: "",
     player: null,
-    level: null
+    level: null,
   };
 
   handleClick = async (row, column) => {
     await this.setState({
-      clickedNow: [row, column]
+      clickedNow: [row, column],
     });
 
     this.boardExecute();
@@ -135,6 +135,17 @@ export default class Board extends Component {
     }
   };
 
+  boardSave = () => {
+    console.log(this.state);
+    localStorage.setItem("boardState", JSON.stringify(this.state));
+  };
+
+  boardLoad = () => {
+    if (!localStorage.getItem("boardState")) return;
+    const boardState = JSON.parse(localStorage.getItem("boardState"));
+    this.setState(() => boardState);
+  };
+
   checkWin = async () => {
     const { piecePlayerBlue, piecePlayerRed, turn } = this.state;
     const possibleClick = getPossibleClick(
@@ -155,7 +166,7 @@ export default class Board extends Component {
     return false;
   };
 
-  renderBoard = board => {
+  renderBoard = (board) => {
     return board.map((row, rowIdx) => (
       <div className="row" key={`row${rowIdx}`}>
         {row.map((column, columnIdx) => (
@@ -180,11 +191,11 @@ export default class Board extends Component {
     ));
   };
 
-  changeNumberOfPlayer = number => {
+  changeNumberOfPlayer = (number) => {
     this.setState({ player: number });
   };
 
-  changeLevel = level => {
+  changeLevel = (level) => {
     this.setState({ level: level });
   };
 
@@ -200,6 +211,7 @@ export default class Board extends Component {
             <button onClick={() => this.changeNumberOfPlayer(2)}>
               2 Player
             </button>
+            <button onClick={() => this.boardLoad()}>Load Game</button>
           </div>
         </div>
       );
@@ -243,6 +255,14 @@ export default class Board extends Component {
             className="new-game"
           >
             New Game
+          </h1>
+          <h1
+            onClick={() => {
+              this.boardSave();
+            }}
+            className="new-game"
+          >
+            Save Game
           </h1>
         </div>
         <div className="board">{this.renderBoard(this.state.board)}</div>
