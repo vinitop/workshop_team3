@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/workshop_team3/static/css/main.df25605e.css",
+    "main.js": "/workshop_team3/static/js/main.fc468e13.js",
+    "index.html": "/workshop_team3/index.html",
+    "main.df25605e.css.map": "/workshop_team3/static/css/main.df25605e.css.map",
+    "main.fc468e13.js.map": "/workshop_team3/static/js/main.fc468e13.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.df25605e.css",
+    "static/js/main.fc468e13.js"
+  ]
+}
