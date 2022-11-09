@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Poppins:wght@700&display=swap');
+
+body {
+  background: rgb(214, 250, 247);
+}
+
+.board {
+  height: 640px;
+  width: 640px;
+  border: 10px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+}
+
+.player-turn {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  font-family: 'Indie Flower', cursive;
+  /* background-color: white; */
+}
+
+.player-turn h1 {
+  background: #fff;
+  margin: 0;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 1px 5px;
+  padding-left: 30px;
+}
+
+.vs {
+  color: rgb(46, 166, 176);
+}
+
+.player-turn h1:not(:first-child) {
+  border-left: none;
+}
+
+.player-turn .player-1 {
+  color: rgb(138, 225, 252);
+}
+
+.player-turn .player-2 {
+  color: rgb(220, 84, 84);
+}
+
+.player-turn .vs-piece .red {
+  color: rgb(220, 84, 84);
+}
+
+.player-turn .vs-piece .blue {
+  color: rgb(138, 225, 252);
+}
+
+.player-turn .new-game {
+  color: rgb(46, 166, 176);
+  cursor: pointer;
+}
+
+.player-turn .new-game:hover {
+  background-color: rgb(220, 84, 84);
+  color: white;
+  /* transform: translateY(0) scale(1.2); */
+  transition: 0.5s;
+  transition-delay: calc((var(--n) - 1) * 0.1s);
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  height: 80px;
+}
+
+.column {
+  width: 80px;
+  height: 80px;
+  background: rgb(120, 215, 224);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row:nth-child(odd) .column:nth-child(odd),
+.row:nth-child(even) .column:nth-child(even) {
+  background: white;
+}
+
+
+.piece {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.piece.red {
+  background: rgb(220, 84, 84);
+}
+
+.piece.blue {
+  background: rgb(3, 77, 100);
+}
+
+.king {
+  width: 30px;
+  height: 30px;
+  background: rgb(10, 91, 1);
+  border-radius: 50%;
+}
+
+.choose {
+  background: #fff;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 40px;
+  padding: 150px;
+}
+
+.choose h1 {
+  margin: 0;
+  color: rgb(46, 166, 176);
+  font-family: 'Poppins', sans-serif;
+  font-size: 50px;
+}
+
+.choose p {
+  max-width: 500px;
+}
+
+.choose .button button {
+  background: white;
+  border: 4px solid;
+  padding: 8px;
+  cursor: pointer;
+  margin: 8px;
+  font-size: 20px;
+  font-family: 'Indie Flower', cursive;
+}
+
+.choose .button button:first-child {
+  color: rgb(46, 166, 176);
+  transition: 0.5s;
+  transition-delay: calc((var(--n) - 1) * 0.1s);
+  z-index: -1;
+}
+
+.choose .button button:first-child:hover {
+  background-color: rgb(46, 166, 176);
+  color: white;
+  transform: translateY(0) scale(2);
+}
+
+.choose .button button:last-child {
+  color: rgb(220, 84, 84);
+  transition: 0.5s;
+  transition-delay: calc((var(--n) - 1) * 0.1s);
+  z-index: -1;
+}
+
+.choose .button button:last-child:hover {
+  background-color: rgb(220, 84, 84);
+  transform: translateY(0) scale(2);
+  color: white;
+}
+
+.sickAI {
+  font-family: 'Indie Flower', cursive;
+  font-size: 35px;
+}
