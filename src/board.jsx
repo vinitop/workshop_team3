@@ -140,7 +140,8 @@ export default class Board extends Component {
   boardSave = () => {
     console.log(this.state);
     localStorage.setItem(`${this.state.player1Name} vs ${this.state.player2Name}`, JSON.stringify(this.state));
-    window.alert("Game saved!", "Game Saved!");
+    window.alert("Game saved!");
+    window.location.reload();
   };
 
   boardLoad = () => {
@@ -181,7 +182,13 @@ export default class Board extends Component {
         {row.map((column, columnIdx) => (
           <div
             className="column"
-            onClick={() => this.handleClick(rowIdx, columnIdx)}
+            onClick={() => {
+              if (this.state.clickedBefore.length > 0 && this.state.possibleJumpMove.length > 0) {
+                window.alert("Jump move possible!");
+              }
+              this.handleClick(rowIdx, columnIdx);
+            }
+          }
             key={`column${columnIdx}`}
           >
             {column.color === "M" && (
