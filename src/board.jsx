@@ -98,6 +98,8 @@ export default class Board extends Component {
     winner: "",
     player: null,
     level: null,
+    player1Name: "",
+    player2Name: "",
   };
 
   handleClick = async (row, column) => {
@@ -137,12 +139,19 @@ export default class Board extends Component {
 
   boardSave = () => {
     console.log(this.state);
-    localStorage.setItem("boardState", JSON.stringify(this.state));
+    localStorage.setItem(`${this.state.player1Name} vs ${this.state.player2Name}`, JSON.stringify(this.state));
+    window.alert("Game saved!", "Game Saved!");
   };
 
   boardLoad = () => {
-    if (!localStorage.getItem("boardState")) return;
-    const boardState = JSON.parse(localStorage.getItem("boardState"));
+    this.state.player1Name = prompt("Enter player 1 name: ");
+    this.state.player2Name = prompt("Enter player 2 name: ");
+    if (!localStorage.getItem(`${this.state.player1Name} vs ${this.state.player2Name}`)) return;
+    const boardState = JSON.parse(
+      localStorage.getItem(
+        `${this.state.player1Name} vs ${this.state.player2Name}`
+      )
+    );
     this.setState(() => boardState);
   };
 
@@ -208,7 +217,24 @@ export default class Board extends Component {
             <button className="onep" onClick={() => this.changeNumberOfPlayer(1)}>
               1 Player
             </button>
-            <button className="twop" onClick={() => this.changeNumberOfPlayer(2)}>
+            <button className="twop" onClick={() => {
+              while (true) {
+                this.state.player1Name = prompt("Enter Player 1 name: ");
+                if (this.state.player1Name !== "") break;
+                else window.alert("Please enter player 1 name!")
+              }
+              while (true) {
+                this.state.player2Name = prompt("Enter Player 2 name: ");
+                if (this.state.player2Name !== "") break;
+                else window.alert("Please enter player 2 name!")
+              }
+
+              if (this.state.player1Name === null || this.state.player2Name === null) {
+                window.alert("Please enter player names!");
+                window.reload()
+              };
+              this.changeNumberOfPlayer(2);
+            }}>
               2 Player
             </button>
             <button className="lg" onClick={() => this.boardLoad()}>
@@ -221,17 +247,38 @@ export default class Board extends Component {
 
     if (this.state.player === 1 && this.state.level === null) {
       return (
-        <div className="sickAI">
-          <div>Sorry, AI is sick!</div>
-          Try playing with a friend for now.
-        </div>
-        // <div className="choose">
-        //   <h1>Select Level</h1>
-        //   <div className="button">
-        //     <button onClick={() => this.changeLevel("easy")}>Easy</button>
-        //     <button onClick={() => this.changeLevel("hard")}>Hard</button>
+        // <div className="sickAI">
+        //   <div>Sorry, AI is sick!</div>
+        //   Try playing with a friend for now.
+        //   <div>
+        //     <button className="mm" onClick={() => window.location.reload()}>
+        //       Main Menu
+        //     </button>
         //   </div>
         // </div>
+        <div className="choose">
+          <h1>Select Level</h1>
+          <div className="button">
+            <button
+              onClick={() => {
+                this.state.player1Name = prompt("Enter your name: ");
+                this.state.player2Name = "AI";
+                this.changeLevel("easy");
+              }}
+            >
+              Easy
+            </button>
+            <button
+              onClick={() => {
+                this.state.player1Name = prompt("Enter your name: ");
+                this.state.player2Name = "AI";
+                this.changeLevel("hard");
+              }}
+            >
+              Hard
+            </button>
+          </div>
+        </div>
       );
     }
 
@@ -248,7 +295,7 @@ export default class Board extends Component {
           <h1 className={`player-${this.state.turn}`}>
             {this.state.winner
               ? `${this.state.winner} Win`
-              : `Player ${this.state.turn} Turn`}
+              : `${this.state.player === 1 ? this.state.player1Name : this.state.turn === 1 ? this.state.player1Name : this.state.player2Name}'s Turn`}
           </h1>
           <h1
             onClick={() => {

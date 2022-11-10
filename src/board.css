@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Poppins:wght@700&display=swap');
 
 body {
-  background: rgb(255, 122, 122);
+  background: rgb(255, 253, 122);
 }
 
 .board {
@@ -31,23 +31,23 @@ body {
 }
 
 .vs {
-  color: rgb(46, 166, 176);
+  color: rgb(255, 253, 122);
 }
 
 .player-turn h1:not(:first-child) {
   border-left: none;
 }
 
-.player-turn .player-1 {
+.player-turn {
   color: rgb(138, 225, 252);
 }
 
 .player-turn .player-2 {
-  color: rgb(255, 122, 122);
+  color: rgb(155, 252, 138);
 }
 
 .player-turn .vs-piece .red {
-  color: rgb(255, 122, 122);
+  color: rgb(155, 252, 138);
 }
 
 .player-turn .vs-piece .blue {
@@ -55,12 +55,12 @@ body {
 }
 
 .player-turn .new-game {
-  color: rgb(255, 122, 122);
+  color: rgb(255, 253, 122);
   cursor: pointer;
 }
 
 .player-turn .new-game:hover {
-  background-color: rgb(220, 84, 84);
+  background-color: rgb(255, 253, 122);
   color: white;
   /* transform: translateY(0) scale(1.2); */
   transition: 0.5s;
@@ -98,17 +98,30 @@ body {
 }
 
 .piece.red {
-  background: rgb(215, 49, 49);
+  background: rgb(155, 252, 138);
+}
+
+.piece.red:hover {
+  background: rgb(41, 191, 14);
+  transition: 0.2s;
+  transition-delay: calc((var(--n) - 1) * 0.1s);
 }
 
 .piece.blue {
   background: rgb(131, 220, 248);
 }
 
+.piece.blue:hover {
+  background: rgb(46, 130, 156);
+  transition: 0.2s;
+  transition-delay: calc((var(--n) - 1) * 0.1s);
+  /* z-index: -1; */
+}
+
 .king {
   width: 30px;
   height: 30px;
-  background: rgb(255, 0, 0);
+  background: rgb(155, 252, 138);
   border-radius: 50%;
 }
 
@@ -122,7 +135,7 @@ body {
 
 .choose h1 {
   margin: 0;
-  color: rgb(255, 122, 122);
+  color: rgb(255, 253, 122);
   font-family: 'Poppins', sans-serif;
   font-size: 50px;
 }
@@ -183,4 +196,26 @@ body {
 .sickAI {
   font-family: 'Indie Flower', cursive;
   font-size: 35px;
+}
+
+.mm {
+  color: rgb(255, 253, 122);
+  transition: 0.5s;
+  transition-delay: calc((var(--n) - 1) * 0.1s);
+  z-index: -1;
+  background: white;
+  color: black;
+  border: 0px solid;
+  border-radius: 10px;
+  padding: 40px;
+  cursor: pointer;
+  margin: 8px;
+  font-size: 20px;
+  font-family: 'Indie Flower', cursive;
+}
+
+.mm:hover {
+  background-color: rgb(255, 253, 122);
+  /* transform: translateY(0) scale(2); */
+  color: white;
 }
