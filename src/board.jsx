@@ -183,9 +183,6 @@ export default class Board extends Component {
           <div
             className="column"
             onClick={() => {
-              if (this.state.clickedBefore.length > 0 && this.state.possibleJumpMove.length > 0) {
-                window.alert("Jump move possible!");
-              }
               this.handleClick(rowIdx, columnIdx);
             }
           }
@@ -302,7 +299,13 @@ export default class Board extends Component {
           <h1 className={`player-${this.state.turn}`}>
             {this.state.winner
               ? `${this.state.winner} Win`
-              : `${this.state.player === 1 ? this.state.player1Name : this.state.turn === 1 ? this.state.player1Name : this.state.player2Name}'s Turn`}
+              : `${
+                  this.state.player === 1
+                    ? this.state.player1Name
+                    : this.state.turn === 1
+                    ? this.state.player1Name
+                    : this.state.player2Name
+                }'s Turn`}
           </h1>
           <h1
             onClick={() => {
@@ -311,6 +314,14 @@ export default class Board extends Component {
             className="new-game"
           >
             Save Game
+          </h1>
+          <h1
+            onClick={() => {
+              window.location.reload();
+            }}
+            className="exit"
+          >
+            X
           </h1>
         </div>
         <div className="board">{this.renderBoard(this.state.board)}</div>
