@@ -4,7 +4,7 @@ Software Craftmanship Workshop
 To run the program: npm install
 npm start
 BOARD GAME CHECKERS
-
+https://vinitop.github.io/workshop_team3/
 Abstract 
 
 Around the world, passionate people are constantly looking for entertaining and thrilling games that are simple to access and also not to waste time.
